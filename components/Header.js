@@ -1,9 +1,12 @@
 // components/Header.js
 import styles from '../styles/Home.module.css';
+import Weather from './Weather';
 
 const Header = () => (
   <header className={styles.header}>
-    <h1>Notícias do Mundo</h1>
+    <Weather />
+    <h1>Notícias</h1>
+
   </header>
 );
 
