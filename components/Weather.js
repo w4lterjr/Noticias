@@ -1,4 +1,3 @@
-// src/Weather.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -10,13 +9,12 @@ const Weather = () => {
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        const apiKey = 'SUA_CHAVE_DE_API'; // Substitua pela sua chave de API
-        const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather`, {
+        const apiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY; // Substitua pela sua chave de API
+        const response = await axios.get(`https://api.weatherapi.com/v1/current.json`, {
           params: {
+            key: apiKey,
             q: city,
-            appid: apiKey,
-            units: 'metric', // ou 'imperial' para Fahrenheit
-            lang: 'pt' // Para obter as descrições em português
+            lang: 'pt'
           }
         });
         setWeather(response.data);
@@ -42,11 +40,11 @@ const Weather = () => {
       {error && <p>{error}</p>}
       {weather && (
         <div>
-          <h2>{weather.name}</h2>
-          <p>{weather.weather[0].description}</p>
-          <p>Temperatura: {weather.main.temp}°C</p>
-          <p>Umidade: {weather.main.humidity}%</p>
-          <p>Vento: {weather.wind.speed} m/s</p>
+          <h2>{weather.location.name}</h2>
+          <p>{weather.current.condition.text}</p>
+          <p>Temperatura: {weather.current.temp_c}°C</p>
+          <p>Umidade: {weather.current.humidity}%</p>
+          <p>Vento: {weather.current.wind_kph} km/h</p>
         </div>
       )}
     </div>
