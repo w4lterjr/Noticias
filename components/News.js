@@ -1,14 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// components/News.js
 import NewsCard from './NewsCard';
+import styles from '../styles/Home.module.css';
 
-const News = () => {
-    
-    return(
-        <h1>Teste</h1>
-    )
-
+const News = ({ articles }) => {
+  return (
+    <div>
+      <h1>Notícias</h1>
+      <main className={styles.main}>
+        {articles.length > 0 ? (
+          articles.map((article) => (
+            <NewsCard
+              key={article.url}
+              title={article.title}
+              description={article.description}
+              url={article.url}
+            />
+          ))
+        ) : (
+          <p>Nenhuma notícia encontrada.</p>
+        )}
+      </main>
+    </div>
+  );
 };
 
 export default News;
-
