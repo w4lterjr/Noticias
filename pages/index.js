@@ -3,12 +3,15 @@ import axios from 'axios';
 import NewsCard from '../components/NewsCard';
 import styles from '../styles/Home.module.css';
 import Weather from '../components/Weather';
+import News from '../components/News';
 
 export default function Home({ articles }) {
   return (
     <div className={styles.container}>
       <h1>Meu  Jornal</h1>
       <Weather/>
+      <News/>
+
       <h1>Notícias</h1>
 
       <main className={styles.main}>
