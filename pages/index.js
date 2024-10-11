@@ -1,13 +1,16 @@
 // pages/index.js
 import axios from 'axios';
-import Header from '../components/Header';
 import NewsCard from '../components/NewsCard';
 import styles from '../styles/Home.module.css';
+import Weather from '../components/Weather';
 
 export default function Home({ articles }) {
   return (
     <div className={styles.container}>
-      <Header />
+      <h1>Meu  Jornal</h1>
+      <Weather/>
+      <h1>Notícias</h1>
+
       <main className={styles.main}>
         {articles.map((article) => (
           <NewsCard
