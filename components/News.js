@@ -1,6 +1,6 @@
 // components/News.js
 import NewsCard from './NewsCard';
-import styles from '../styles/Home.module.css';
+import styles from '../styles/News.module.css';
 
 const News = ({ articles }) => {
   return (

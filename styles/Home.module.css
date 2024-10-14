@@ -1,29 +1,22 @@
-.main {
-  padding: 20px 20px 60px;
-  max-width: 680px;
-  margin: 0 auto;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-}
-
-.container{
-  text-align: center;
-}
-.hr {
-  border: none;
-  border-bottom: 1px solid #efefef;
-  margin: 3em auto;
-}
-
-.App {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
-  color: #333;
-  text-align: center;
+/* styles/Home.module.css */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  margin: auto;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  max-width: 1200px; /* Limita a largura máxima do contêiner */
+}
+
+.weather {
+  width: 250px; /* Defina a largura do componente de tempo */
+  margin-right: 20px; /* Espaço entre tempo e notícias */
+}
+
+.news {
+  flex: 1; /* Ocupa o restante da largura */
 }
