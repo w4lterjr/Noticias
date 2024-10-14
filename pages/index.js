@@ -1,4 +1,3 @@
-// pages/index.js
 import axios from 'axios';
 import Weather from '../components/Weather';
 import News from '../components/News';
@@ -9,15 +8,15 @@ export default function Home({ articles, error }) {
     <div className={styles.container}>
       <h1 className={styles.h1}>Meu Jornal</h1>
       <div className={styles.content}>
-        <div className={styles.weather}>
-          <Weather />
-        </div>
         <div className={styles.news}>
           {error ? (
             <p>Falha ao carregar notícias. Tente novamente mais tarde.</p>
           ) : (
             <News articles={articles} />
           )}
+        </div>
+        <div className={styles.weather}>
+          <Weather />
         </div>
       </div>
     </div>

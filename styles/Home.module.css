@@ -1,25 +1,21 @@
 .container {
   display: flex;
   flex-direction: column;
-  height: 100vh; /* Ocupa toda a altura da janela */
+  align-items: center;
 }
 
 .content {
-  display: flex; /* Alinha os filhos em linha */
-  flex: 1; /* Faz com que o conteúdo ocupe o restante do espaço */
-}
-
-.h1{
-  text-align: center;
-}
-
-.weather {
-  flex: 0 0 200px; /* Largura fixa para o tempo (ajuste conforme necessário) */
-  padding: 20px; /* Adiciona algum espaço interno */
+  display: flex;
+  width: 100%;
 }
 
 .news {
-  flex: 1; /* Ocupará o espaço restante */
-  padding: 20px; /* Adiciona espaço interno */
-  overflow-y: auto; /* Adiciona rolagem vertical se necessário */
+  flex: 3; /* ocupa a maior parte do espaço */
+  padding: 20px;
+}
+
+.weather {
+  flex: 1; /* ocupa o espaço à direita */
+  max-width: 300px; /* largura máxima para o tempo */
+  padding: 20px;
 }
