@@ -2,6 +2,7 @@ import axios from 'axios';
 import Weather from '../components/Weather';
 import News from '../components/News';
 import styles from '../styles/Home.module.css';
+import Ibovespa from '../components/Ibovespa'
 
 export default function Home({ articles, error }) {
   return (
@@ -17,6 +18,8 @@ export default function Home({ articles, error }) {
         </div>
         <div className={styles.weather}>
           <Weather />
+          <Ibovespa/>
+
         </div>
       </div>
     </div>
