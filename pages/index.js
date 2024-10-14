@@ -7,7 +7,7 @@ import styles from '../styles/Home.module.css';
 export default function Home({ articles, error }) {
   return (
     <div className={styles.container}>
-      <h1>Meu Jornal</h1>
+      <h1 className={styles.h1}>Meu Jornal</h1>
       <div className={styles.content}>
         <div className={styles.weather}>
           <Weather />
