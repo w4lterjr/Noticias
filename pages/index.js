@@ -3,11 +3,15 @@ import Weather from '../components/Weather';
 import News from '../components/News';
 import styles from '../styles/Home.module.css';
 import Ibovespa from '../components/Ibovespa'
+import Cambio from '../components/Cambio'
 
 export default function Home({ articles, error }) {
   return (
     <div className={styles.container}>
       <h1 className={styles.h1}>Meu Jornal</h1>
+      <div>
+        <Cambio/>
+      </div>
       <div className={styles.content}>
         <div className={styles.news}>
           {error ? (

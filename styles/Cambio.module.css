@@ -1,0 +1,56 @@
+/* Cambio.module.css */
+
+.tickerContainer {
+    display: flex;
+    overflow: hidden; /* Esconde a barra de rolagem */
+    white-space: nowrap; /* Impede que os itens quebrem linha */
+    animation: scroll 10s linear infinite; /* Animação contínua */
+  }
+  
+  .cambioItem {
+    margin: 0 20px; /* Espaçamento entre os itens */
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    display: inline-block;
+    text-align: center;
+  }
+  
+  .loader {
+    font-size: 1.5em;
+    color: #007bff;
+  }
+  
+  .error {
+    color: #d9534f;
+    text-align: center;
+    padding: 20px;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    border-radius: 5px;
+  }
+  
+  .error button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .error button:hover {
+    background-color: #c9302c;
+  }
+  
+  @keyframes scroll {
+    from {
+      transform: translateX(100%); /* Começa fora da tela à direita */
+    }
+    to {
+      transform: translateX(-100%); /* Termina fora da tela à esquerda */
+    }
+  }
+  
