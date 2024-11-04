@@ -50,12 +50,12 @@ export default function App() {
       <div className={styles.tickerContainer}>
         <div className={styles.cambioItem}>
           <p>
-            Dolar: $ {usdRate ? usdRate.toFixed(4) : 'N/A'}
+            Dolar: $ {usdRate ? usdRate.toFixed(2) : 'N/A'}
           </p>
         </div>
         <div className={styles.cambioItem}>
           <p>
-            Euro: $ {eurRate ? eurRate.toFixed(4) : 'N/A'}
+            Euro: $ {eurRate ? eurRate.toFixed(2) : 'N/A'}
           </p>
         </div>
       </div>
