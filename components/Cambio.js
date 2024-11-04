@@ -3,17 +3,23 @@ import axios from 'axios';
 import styles from '../styles/Cambio.module.css';
 
 export default function App() {
-  const [cambio, setCambio] = useState(null);
+  const [usdRate, setUsdRate] = useState(null);
+  const [eurRate, setEurRate] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const currencies = ['BRL', 'EUR', 'GBP', 'RUB'];
+  const currencies = ['BRL', 'EUR'];
 
   const fetchCotacoes = async () => {
     setLoading(true);
-    setError(null); // Resetar o estado de erro
+    setError(null);
     try {
-      const response = await axios.get('https://api.exchangerate-api.com/v4/latest/USD');
-      setCambio(response.data.rates);
+      const [usdResponse, eurResponse] = await Promise.all([
+        axios.get('https://api.exchangerate-api.com/v4/latest/USD'),
+        axios.get('https://api.exchangerate-api.com/v4/latest/EUR')
+      ]);
+      
+      setUsdRate(usdResponse.data.rates.BRL);
+      setEurRate(eurResponse.data.rates.BRL);
     } catch (err) {
       setError(err.response ? err.response.data.error : 'Erro ao buscar as cotações');
       console.error(err);
@@ -34,9 +40,7 @@ export default function App() {
     return (
       <div className={styles.error}>
         <p>{error}</p>
-        <button onClick={fetchCotacoes}>
-          Tentar Novamente
-        </button>
+        <button onClick={fetchCotacoes}>Tentar Novamente</button>
       </div>
     );
   }
@@ -44,11 +48,16 @@ export default function App() {
   return (
     <main>
       <div className={styles.tickerContainer}>
-        {cambio && currencies.map((currency) => (
-          <div className={styles.cambioItem} key={currency}>
-            <p>{currency}: {cambio[currency].toFixed(4)}</p>
-          </div>
-        ))}
+        <div className={styles.cambioItem}>
+          <p>
+            Dolar: $ {usdRate ? usdRate.toFixed(4) : 'N/A'}
+          </p>
+        </div>
+        <div className={styles.cambioItem}>
+          <p>
+            Euro: $ {eurRate ? eurRate.toFixed(4) : 'N/A'}
+          </p>
+        </div>
       </div>
     </main>
   );
