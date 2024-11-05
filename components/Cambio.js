@@ -7,6 +7,7 @@ export default function App() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // Function to fetch the exchange rates
   const fetchCotacoes = async () => {
     setLoading(true);
     setError(null);
@@ -24,7 +25,7 @@ export default function App() {
       });
     } catch (err) {
       setError('Erro ao buscar as cotações. Tente novamente mais tarde.');
-      console.error('Error fetching exchange rates:', err);
+      console.error('Error fetching exchange rates:', err); // For development debugging
     } finally {
       setLoading(false);
     }
@@ -34,19 +35,24 @@ export default function App() {
     fetchCotacoes();
   }, []);
 
+  // Loading state rendering
   if (loading) {
     return <div className={styles.loader}>Carregando...</div>;
   }
 
+  // Error state rendering
   if (error) {
     return (
       <div className={styles.error}>
         <p>{error}</p>
-        <button onClick={fetchCotacoes}>Tentar Novamente</button>
+        <button onClick={fetchCotacoes} className={styles.retryButton}>
+          Tentar Novamente
+        </button>
       </div>
     );
   }
 
+  // Normal state rendering with exchange rates
   return (
     <div className={styles.tickerContainerWrapper}>
       <div className={styles.tickerContainer}>

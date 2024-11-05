@@ -10,7 +10,7 @@ export default function Home({ articles, error }) {
     <div className={styles.container}>
       <h1 className={styles.h1}>Meu Jornal</h1>
       <div>
-        <Cambio/>
+        <Cambio />
       </div>
       <div className={styles.content}>
         <div className={styles.news}>
@@ -22,8 +22,7 @@ export default function Home({ articles, error }) {
         </div>
         <div className={styles.weather}>
           <Weather />
-          <Ibovespa/>
-
+          <Ibovespa />
         </div>
       </div>
     </div>

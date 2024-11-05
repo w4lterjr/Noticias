@@ -19,3 +19,27 @@
   max-width: 300px; /* largura máxima para o tempo */
   padding: 20px;
 }
+
+/* Estilo do título */
+.h1 {
+  font-size: 2em; /* Aumenta o tamanho do título */
+  text-align: center;
+  margin-top: 10px; /* Espaço acima do título */
+  font-weight: bold;
+  color: #000; /* Cor escura para o título */
+  text-transform: uppercase; /* Transforma o texto em maiúsculas */
+  letter-spacing: 1px; /* Aumenta o espaçamento entre as letras */
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .h1 {
+    font-size: 2.5em; /* Tamanho ajustado para telas menores */
+  }
+}
+
+@media (max-width: 480px) {
+  .h1 {
+    font-size: 2em; /* Tamanho ajustado ainda mais para celulares */
+  }
+}

@@ -9,25 +9,27 @@
 
 /* Barra de rolagem abaixo do título */
 .tickerContainerWrapper {
-  width: 100%; /* Largura total da tela */
+  width: 100vw; /* Garantir que ocupe toda a largura da tela */
   background-color: #000; /* Fundo preto */
-  padding: 10px 0; /* Espaço acima e abaixo dos itens */
-  margin-top: 20px; /* Espaçamento entre o título e a barra */
+  padding: 0px 0; /* Espaço acima e abaixo dos itens */
+  margin-top: 0px; /* Espaçamento entre o título e a barra */
   display: flex; /* Exibe os itens na horizontal */
-  overflow: hidden; /* Impede a barra de rolagem */
+  overflow: hidden; /* Impede a barra de rolagem visível */
+  position: relative; /* Necessário para animações */
 }
 
 /* Container que vai mostrar as cotações */
 .tickerContainer {
   display: flex;
   white-space: nowrap; /* Impede que os itens quebrem linha */
-  animation: scroll 7s linear infinite; /* Animação contínua */
+  animation: scroll 10s linear infinite; /* Animação contínua, ajustada para durar mais */
+  justify-content: flex-start; /* Garante que os itens comecem do início */
 }
 
 /* Estilo para cada item de câmbio */
 .cambioItem {
   margin: 0 20px; /* Espaçamento entre os itens */
-  padding: 10px 20px; /* Espaço interno dos itens */
+  padding: 5px 10px; /* Espaço interno dos itens */
   color: #fff; /* Texto branco */
   font-weight: bold; /* Texto em negrito */
   font-size: 1.5em; /* Tamanho da fonte */
@@ -74,5 +76,27 @@
   }
   to {
     transform: translateX(-100%); /* Termina fora da tela à esquerda */
+  }
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .tickerContainerWrapper {
+    padding: 5px 0; /* Menos espaço nos lados em telas pequenas */
+  }
+
+  .cambioItem {
+    font-size: 1.2em; /* Fonte menor para dispositivos móveis */
+    margin: 0 10px; /* Menos espaço entre os itens */
+  }
+}
+
+@media (max-width: 480px) {
+  .h1 {
+    font-size: 1.5em; /* Fonte menor para o título em dispositivos muito pequenos */
+  }
+  .cambioItem {
+    font-size: 1em; /* Fonte ainda menor para itens de câmbio */
+    margin: 0 5px; /* Espaço menor entre os itens */
   }
 }
