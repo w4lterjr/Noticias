@@ -4,7 +4,7 @@ import styles from '../styles/Weather.module.css';
 
 const Weather = () => {
   const [weather, setWeather] = useState(null);
-  const [city, setCity] = useState('São Paulo');
+  const [city, setCity] = useState('Recife');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
