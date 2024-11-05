@@ -59,7 +59,7 @@ export default function App() {
         {Object.entries(rates).map(([currency, rate]) => (
           <div key={currency} className={styles.cambioItem}>
             <p>
-              {currency}: {rate ? rate.toFixed(2) : 'N/A'}
+              {currency}: $ {rate ? rate.toFixed(2) : 'N/A'}
             </p>
           </div>
         ))}
