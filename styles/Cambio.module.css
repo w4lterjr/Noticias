@@ -1,58 +1,78 @@
-/* Cambio.module.css */
+/* Estilo do título */
+.h1 {
+  font-size: 2em;
+  text-align: center;
+  margin-top: 20px; /* Espaço acima do título */
+  font-weight: bold;
+  color: #333; /* Cor escura para o título */
+}
 
+/* Barra de rolagem abaixo do título */
+.tickerContainerWrapper {
+  width: 100%; /* Largura total da tela */
+  background-color: #000; /* Fundo preto */
+  padding: 10px 0; /* Espaço acima e abaixo dos itens */
+  margin-top: 20px; /* Espaçamento entre o título e a barra */
+  display: flex; /* Exibe os itens na horizontal */
+  overflow: hidden; /* Impede a barra de rolagem */
+}
+
+/* Container que vai mostrar as cotações */
 .tickerContainer {
-    display: flex;
-    overflow: hidden; /* Esconde a barra de rolagem */
-    white-space: nowrap; /* Impede que os itens quebrem linha */
-    animation: scroll 7s linear infinite; /* Animação contínua */
+  display: flex;
+  white-space: nowrap; /* Impede que os itens quebrem linha */
+  animation: scroll 7s linear infinite; /* Animação contínua */
+}
+
+/* Estilo para cada item de câmbio */
+.cambioItem {
+  margin: 0 20px; /* Espaçamento entre os itens */
+  padding: 10px 20px; /* Espaço interno dos itens */
+  color: #fff; /* Texto branco */
+  font-weight: bold; /* Texto em negrito */
+  font-size: 1.5em; /* Tamanho da fonte */
+  display: inline-block;
+  text-align: center;
+}
+
+/* Estilo para o estado de carregamento */
+.loader {
+  font-size: 1.5em;
+  color: #007bff; /* Cor azul para o texto de carregamento */
+}
+
+/* Estilo para o erro */
+.error {
+  color: #d9534f;
+  text-align: center;
+  padding: 20px;
+  background-color: #f2dede; /* Fundo vermelho claro */
+  border: 1px solid #ebccd1; /* Borda suave */
+  border-radius: 5px;
+}
+
+/* Estilo do botão de erro */
+.error button {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* Hover do botão de erro */
+.error button:hover {
+  background-color: #c9302c; /* Cor mais escura ao passar o mouse */
+}
+
+/* Animação para o efeito de rolagem contínua */
+@keyframes scroll {
+  from {
+    transform: translateX(100%); /* Começa fora da tela à direita */
   }
-  
-  .cambioItem {
-    margin: 0 0px; /* Espaçamento entre os itens */
-    padding: 5px 10px;
-    background-color: #000;
-    color: #fff;
-    font-weight: bold;
-    border: 1px solid #e1e1e1;
-    border-radius: 5px;
-    display: inline-block;
-    text-align: center;
+  to {
+    transform: translateX(-100%); /* Termina fora da tela à esquerda */
   }
-  
-  .loader {
-    font-size: 1.5em;
-    color: #007bff;
-  }
-  
-  .error {
-    color: #d9534f;
-    text-align: center;
-    padding: 20px;
-    background-color: #f2dede;
-    border: 1px solid #ebccd1;
-    border-radius: 5px;
-  }
-  
-  .error button {
-    background-color: #d9534f;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  
-  .error button:hover {
-    background-color: #c9302c;
-  }
-  
-  @keyframes scroll {
-    from {
-      transform: translateX(100%); /* Começa fora da tela à direita */
-    }
-    to {
-      transform: translateX(-100%); /* Termina fora da tela à esquerda */
-    }
-  }
-  
+}

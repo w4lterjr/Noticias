@@ -24,7 +24,7 @@ export default function App() {
       });
     } catch (err) {
       setError('Erro ao buscar as cotações. Tente novamente mais tarde.');
-      console.error(err);
+      console.error('Error fetching exchange rates:', err);
     } finally {
       setLoading(false);
     }
@@ -48,16 +48,16 @@ export default function App() {
   }
 
   return (
-    <main>
+    <div className={styles.tickerContainerWrapper}>
       <div className={styles.tickerContainer}>
         {Object.entries(rates).map(([currency, rate]) => (
           <div key={currency} className={styles.cambioItem}>
             <p>
-              {currency}: $ {rate ? rate.toFixed(2) : 'N/A'}
+              {currency}: {rate ? rate.toFixed(2) : 'N/A'}
             </p>
           </div>
         ))}
       </div>
-    </main>
+    </div>
   );
 }
