@@ -22,7 +22,7 @@
 .tickerContainer {
   display: flex;
   white-space: nowrap; /* Impede que os itens quebrem linha */
-  animation: scroll 10s linear infinite; /* Animação contínua, ajustada para durar mais */
+  animation: scroll 15s linear infinite; /* Animação contínua, ajustada para durar mais */
   justify-content: flex-start; /* Garante que os itens comecem do início */
 }
 
