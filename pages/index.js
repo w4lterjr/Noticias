@@ -40,6 +40,7 @@ export async function getServerSideProps() {
         country: 'us',
       },
     });
+    //
     articles = res.data.articles || [];
   } catch (err) {
     console.error('Error fetching news articles:', err);
