@@ -1,5 +1,5 @@
 /* Estilo do título */
-.h1 {
+.title {
   font-size: 2em;
   text-align: center;
   margin-top: 20px; /* Espaço acima do título */
@@ -28,8 +28,8 @@
 
 /* Estilo para cada item de câmbio */
 .cambioItem {
-  margin: 0 20px; /* Espaçamento entre os itens */
-  padding: 5px 10px; /* Espaço interno dos itens */
+  margin: 0 40px; /* Aumentado o espaçamento entre os itens (de 20px para 40px) */
+  padding: 10px 20px; /* Aumentado o espaçamento interno (de 5px para 10px e 10px para 20px) */
   color: #fff; /* Texto branco */
   font-weight: bold; /* Texto em negrito */
   font-style: italic;
@@ -42,6 +42,7 @@
 .loader {
   font-size: 1.5em;
   color: #007bff; /* Cor azul para o texto de carregamento */
+  text-align: center; /* Centralizar a mensagem de carregamento */
 }
 
 /* Estilo para o erro */
@@ -60,9 +61,9 @@
   color: white;
   border: none;
   border-radius: 5px;
-  padding: 10px 15px;
+  padding: 12px 18px; /* Mais espaçamento para melhorar a usabilidade */
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 15px; /* Mais espaço entre o erro e o botão */
 }
 
 /* Hover do botão de erro */
@@ -88,16 +89,17 @@
 
   .cambioItem {
     font-size: 1.2em; /* Fonte menor para dispositivos móveis */
-    margin: 0 10px; /* Menos espaço entre os itens */
+    margin: 0 25px; /* Aumentado o espaçamento entre os itens em dispositivos móveis */
   }
 }
 
 @media (max-width: 480px) {
-  .h1 {
+  .title {
     font-size: 1.5em; /* Fonte menor para o título em dispositivos muito pequenos */
   }
+
   .cambioItem {
     font-size: 1em; /* Fonte ainda menor para itens de câmbio */
-    margin: 0 5px; /* Espaço menor entre os itens */
+    margin: 0 15px; /* Aumentado o espaçamento entre os itens */
   }
 }
