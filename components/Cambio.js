@@ -1,20 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "../styles/Cambio.module.css";
 
-export default function App() {
-  const [rates, setRates] = useState({ USD: null, EUR: null, BTC: null, SP500: null });
+const App = () => {
+  const [rates, setRates] = useState({
+    USD: null,
+    EUR: null,
+    BTC: null,
+    SP500: null,
+    Ouro: null, // Adicionando o ouro (XAU/USD)
+  });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const apiKey = process.env.REACT_APP_API_KEY; // Segurança com API Key via .env
+  const API_KEY = "DB733HKBEESQB8KO"; // Substitua pela sua chave de API
 
-  const fetchRates = async () => {
+  // Função para buscar cotações
+  const fetchCotacoes = async () => {
     setLoading(true);
     setError(null);
-
     try {
-      const responses = await Promise.all([
+      const [usdResponse, eurResponse, btcResponse, sp500Response, goldResponse] = await Promise.all([
         axios.get("https://api.exchangerate-api.com/v4/latest/USD"),
         axios.get("https://api.exchangerate-api.com/v4/latest/EUR"),
         axios.get("https://api.blockchain.com/v3/exchange/tickers/BTC-USD"),
@@ -23,43 +29,55 @@ export default function App() {
             function: "TIME_SERIES_INTRADAY",
             symbol: "SPY",
             interval: "5min",
-            apikey: apiKey,
+            apikey: API_KEY,
+          },
+        }),
+        axios.get("https://www.alphavantage.co/query", {
+          params: {
+            function: "TIME_SERIES_DAILY",
+            symbol: "XAUUSD", // Ouro em relação ao dólar
+            interval: "1day",
+            apikey: API_KEY,
           },
         }),
       ]);
 
-      const [usdResponse, eurResponse, btcResponse, sp500Response] = responses;
-
-      // Extrair dados do SP500
       const timeSeries = sp500Response.data["Time Series (5min)"];
-      const latestSP500Close = timeSeries ? parseFloat(timeSeries[Object.keys(timeSeries)[0]]["4. close"]) : null;
+      const lastSP500Close = timeSeries
+        ? parseFloat(timeSeries[Object.keys(timeSeries)[0]]["4. close"])
+        : null;
 
-      // Atualizar estado com as cotações
+      const latestGoldData = goldResponse.data["Time Series (Daily)"];
+      const latestGoldDate = latestGoldData ? Object.keys(latestGoldData)[0] : null;
+      const goldPrice = latestGoldData
+        ? latestGoldData[latestGoldDate]["4. close"]
+        : null;
+
       setRates({
         USD: usdResponse.data.rates.BRL,
         EUR: eurResponse.data.rates.BRL,
-        BTC: btcResponse.data.last_trade_price || btcResponse.data.price, // Fallback para o preço se necessário
-        SP500: latestSP500Close,
+        BTC: btcResponse.data.last_trade_price,
+        SP500: lastSP500Close,
+        Ouro: goldPrice, // Armazenando o preço do ouro
       });
     } catch (err) {
       setError("Erro ao buscar as cotações. Tente novamente mais tarde.");
-      console.error("Erro ao buscar cotações:", err);
+      console.error("Error fetching exchange rates:", err);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchRates();
+    fetchCotacoes();
   }, []);
 
   if (loading) return <div className={styles.loader}>Carregando...</div>;
-
   if (error) {
     return (
       <div className={styles.error}>
         <p>{error}</p>
-        <button onClick={fetchRates} className={styles.retryButton}>
+        <button onClick={fetchCotacoes} className={styles.retryButton}>
           Tentar Novamente
         </button>
       </div>
@@ -69,15 +87,16 @@ export default function App() {
   return (
     <div className={styles.tickerContainerWrapper}>
       <div className={styles.tickerContainer}>
-        <div className={styles.cambioItem}>
-          <p>
-            {rates.USD !== null ? ` USD: $${rates.USD.toFixed(2)}` : " USD: N/A"}  
-            {rates.EUR !== null ? ` EUR: $${rates.EUR.toFixed(2)}` : " EUR: N/A"} 
-            {rates.BTC !== null ? ` BTC: $${rates.BTC.toFixed(2)}` : " BTC: N/A"} | 
-            {rates.SP500 !== null ? `SP500: $${rates.SP500.toFixed(2)}` : " SP500: N/A"} 
-          </p>
-        </div>
+        {Object.entries(rates).map(([currency, rate]) => (
+          <div key={currency} className={styles.cambioItem}>
+            <p>
+              {currency}: $ {rate !== null ? rate.toFixed(2) : "N/A"}
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   );
-}
+};
+
+export default App;

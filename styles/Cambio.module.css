@@ -28,7 +28,7 @@
 
 /* Estilo para cada item de câmbio */
 .cambioItem {
-  margin: 0 40px; /* Aumentado o espaçamento entre os itens (de 20px para 40px) */
+  margin: 0 20px; /* Aumentado o espaçamento entre os itens (de 20px para 40px) */
   padding: 10px 20px; /* Aumentado o espaçamento interno (de 5px para 10px e 10px para 20px) */
   color: #fff; /* Texto branco */
   font-weight: bold; /* Texto em negrito */
