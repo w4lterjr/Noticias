@@ -54,11 +54,11 @@ const App = () => {
         : null;
 
       setRates({
-        USD: usdResponse.data.rates.BRL,
-        EUR: eurResponse.data.rates.BRL,
-        BTC: btcResponse.data.last_trade_price,
-        SP500: lastSP500Close,
-        Ouro: goldPrice, // Armazenando o preço do ouro
+        USD: parseFloat(usdResponse.data.rates.BRL) || 0,
+        EUR: parseFloat(eurResponse.data.rates.BRL) || 0,
+        BTC: parseFloat(btcResponse.data.last_trade_price) || 0,
+        SP500: lastSP500Close !== null ? lastSP500Close : 0,
+        Ouro: parseFloat(goldPrice) || 0, // Armazenando o preço do ouro
       });
     } catch (err) {
       setError("Erro ao buscar as cotações. Tente novamente mais tarde.");
@@ -90,7 +90,8 @@ const App = () => {
         {Object.entries(rates).map(([currency, rate]) => (
           <div key={currency} className={styles.cambioItem}>
             <p>
-              {currency}: $ {rate !== null ? rate.toFixed(2) : "N/A"}
+              {currency}: $ 
+              {typeof rate === 'number' && !isNaN(rate) ? rate.toFixed(2) : "N/A"}
             </p>
           </div>
         ))}
