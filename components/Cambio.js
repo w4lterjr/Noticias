@@ -13,7 +13,7 @@ const App = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const API_KEY = "DB733HKBEESQB8KO"; // Substitua pela sua chave de API
+  const API_KEY = process.env.NEXT_PUBLIC_ALPHA_VANTAGE_API_KEY; // Substitua pela sua chave de API
 
   // Função para buscar cotações
   const fetchCotacoes = async () => {
