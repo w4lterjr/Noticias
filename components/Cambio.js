@@ -90,8 +90,7 @@ const App = () => {
         {Object.entries(rates).map(([currency, rate]) => (
           <div key={currency} className={styles.cambioItem}>
             <p>
-              {currency}: $ 
-              {typeof rate === 'number' && !isNaN(rate) ? rate.toFixed(2) : "N/A"}
+              {currency} : {typeof rate === 'number' && !isNaN(rate) ? rate.toFixed(2) : "N/A"}
             </p>
           </div>
         ))}

@@ -5,7 +5,7 @@ import styles from '../styles/News.module.css';
 const News = ({ articles }) => {
   return (
     <div>
-      <h1>Notícias</h1>
+      <h1>News</h1>
       <main className={styles.main}>
         {articles.length > 0 ? (
           articles.map((article) => (

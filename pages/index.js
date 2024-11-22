@@ -8,7 +8,7 @@ import Cambio from '../components/Cambio'
 export default function Home({ articles, error }) {
   return (
     <div className={styles.container}>
-      <h1 className={styles.h1}>Meu Jornal</h1>
+      <h1 className={styles.h1}>Planeta diario</h1>
       <div>
         <Cambio />
       </div>
