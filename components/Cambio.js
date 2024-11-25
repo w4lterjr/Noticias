@@ -7,6 +7,7 @@ const App = () => {
     USD: null,
     EUR: null,
     BTC: null,
+    IBOVESPA: null, // Adicionando o Ibovespa
     SP500: null,
     Ouro: null, // Adicionando o ouro (XAU/USD)
   });
@@ -20,7 +21,7 @@ const App = () => {
     setLoading(true);
     setError(null);
     try {
-      const [usdResponse, eurResponse, btcResponse, sp500Response, goldResponse] = await Promise.all([
+      const [usdResponse, eurResponse, btcResponse, sp500Response, goldResponse, ibovespaResponse] = await Promise.all([
         axios.get("https://api.exchangerate-api.com/v4/latest/USD"),
         axios.get("https://api.exchangerate-api.com/v4/latest/EUR"),
         axios.get("https://api.blockchain.com/v3/exchange/tickers/BTC-USD"),
@@ -40,6 +41,14 @@ const App = () => {
             apikey: API_KEY,
           },
         }),
+        axios.get("https://www.alphavantage.co/query", {  // Adicionando a consulta do Ibovespa
+          params: {
+            function: "TIME_SERIES_DAILY",
+            symbol: "IBOV.SA", // Cotação do Ibovespa
+            interval: "1day",
+            apikey: API_KEY,
+          },
+        }),
       ]);
 
       const timeSeries = sp500Response.data["Time Series (5min)"];
@@ -53,10 +62,17 @@ const App = () => {
         ? latestGoldData[latestGoldDate]["4. close"]
         : null;
 
+      const latestIbovespaData = ibovespaResponse.data['Time Series (Daily)'];
+      const latestIbovespaDate = latestIbovespaData ? Object.keys(latestIbovespaData)[0] : null;
+      const ibovespaPrice = latestIbovespaData
+        ? latestIbovespaData[latestIbovespaDate]["4. close"]
+        : null;
+
       setRates({
         USD: parseFloat(usdResponse.data.rates.BRL) || 0,
         EUR: parseFloat(eurResponse.data.rates.BRL) || 0,
         BTC: parseFloat(btcResponse.data.last_trade_price) || 0,
+        IBOVESPA: parseFloat(ibovespaPrice) || 0, // Armazenando o preço do Ibovespa
         SP500: lastSP500Close !== null ? lastSP500Close : 0,
         Ouro: parseFloat(goldPrice) || 0, // Armazenando o preço do ouro
       });
