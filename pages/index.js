@@ -4,6 +4,7 @@ import News from '../components/News';
 import styles from '../styles/Home.module.css';
 import Ibovespa from '../components/Ibovespa'
 import Cambio from '../components/Cambio'
+import Futebol from '../components/Futebol'
 
 export default function Home({ articles, error }) {
   return (
@@ -23,6 +24,7 @@ export default function Home({ articles, error }) {
         <div className={styles.weather}>
           <Weather />
           <Ibovespa />
+          <Futebol />
         </div>
       </div>
     </div>
