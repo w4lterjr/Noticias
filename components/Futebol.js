@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import styles from '../styles/Futebol.module.css';
 
 const BrasileiraoClassificacao = () => {
   const [classificacao, setClassificacao] = useState([]);
@@ -23,11 +24,11 @@ const BrasileiraoClassificacao = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Classificação do Brasileirão</h2>
-      <ul>
+    <div className={styles.container}>
+      <h2 className={styles.h2}>Classificação do Brasileirão</h2>
+      <ul className={styles.ul}>
         {classificacao.map((time) => (
-          <li key={time.team.id}>
+          <li key={time.team.id} className={styles.li}>
             {time.position} - {time.team.name} ({time.points} pontos)
           </li>
         ))}
