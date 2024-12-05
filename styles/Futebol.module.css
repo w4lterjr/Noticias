@@ -1,27 +1,27 @@
 /* Futebol.module.css */
 
 .container {
-    background-color: #1a8d39; /* Cor verde do campo de futebol */
+    background-color: #4CAF50; /* Cor verde mais clara, mais suave e agradável */
     color: white; /* Texto branco para contraste */
     font-family: Arial, sans-serif; /* Fonte simples e legível */
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidade */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar leveza e profundidade */
   }
   
-.h2 {
+  .h2 {
     text-align: center;
     font-size: 24px;
     font-weight: bold;
   }
   
-.ul {
+  .ul {
     list-style-type: none; /* Remove os pontos de lista */
     padding-left: 0;
   }
   
-.li {
-    background-color: #005c28; /* Um tom mais escuro de verde */
+  .li {
+    background-color: #388E3C; /* Um verde mais claro e suave */
     padding: 10px;
     margin: 5px 0;
     border-radius: 5px;
