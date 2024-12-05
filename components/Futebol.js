@@ -31,13 +31,13 @@ const BrasileiraoClassificacao = () => {
     <div className={styles.container}>
       <h2 className={styles.h2}>Classificação do Brasileirão</h2>
 
-      {/* Se estiver carregando, exibe uma mensagem de "Carregando..." */}
-      {loading && <div className={styles.loading}>Carregando...</div>}
-
       {/* Se houver erro, exibe a mensagem de erro */}
       {error && <div className={styles.error}>{error}</div>}
 
-      {/* Se não houver erro, exibe a classificação */}
+      {/* Se estiver carregando, exibe uma mensagem de "Carregando..." */}
+      {loading && !error && <div className={styles.loading}>Carregando...</div>}
+
+      {/* Se não houver erro e não estiver carregando, exibe a classificação */}
       {!loading && !error && (
         <ul className={styles.ul}>
           {classificacao.map((time) => (
