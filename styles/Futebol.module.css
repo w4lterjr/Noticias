@@ -11,7 +11,7 @@
   flex-direction: column; /* Organiza os elementos em coluna */
   align-items: center; /* Centraliza os itens horizontalmente */
   justify-content: flex-start; /* Alinha os itens ao topo */
-  min-height: 100vh; /* Garante que o conteúdo ocupe toda a altura da tela */
+  min-height: 50vh; /* Garante que o conteúdo ocupe toda a altura da tela */
 }
 
 .h2 {
