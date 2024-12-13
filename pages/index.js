@@ -23,7 +23,9 @@ export default function Home({ articles, error }) {
         </div>
         <div className={styles.weather}>
           <Weather />
+          <br/>
           <Ibovespa />
+          <br/>
           <Futebol />
         </div>
       </div>
