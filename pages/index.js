@@ -10,6 +10,7 @@ export default function Home({ articles, error }) {
   return (
     <div className={styles.container}>
       <h1 className={styles.h1}>Planeta diario</h1>
+      <Cambio />
       
       <div className={styles.content}>
         <div className={styles.news}>

@@ -56,16 +56,13 @@ const App = () => {
         }),
       ]);
 
-      // Process SP500
       const sp500Data = sp500Response.data["Time Series (5min)"];
       const lastSP500Close = sp500Data ? parseFloat(sp500Data[Object.keys(sp500Data)[0]]["4. close"]) : null;
 
-      // Process Gold
       const goldData = goldResponse.data["Time Series (Daily)"];
       const lastGoldDate = goldData ? Object.keys(goldData)[0] : null;
       const goldPrice = goldData ? parseFloat(goldData[lastGoldDate]["4. close"]) : null;
 
-      // Process Ibovespa
       const ibovespaData = ibovespaResponse.data['Time Series (Daily)'];
       const ibovespaPrice = ibovespaData
         ? parseFloat(ibovespaData[Object.keys(ibovespaData)[0]]["4. close"])
@@ -91,6 +88,13 @@ const App = () => {
     fetchCotacoes();
   }, []);
 
+  // Calcula a largura total dos itens e ajusta o tempo de animação
+  useEffect(() => {
+    const totalWidth = Object.keys(rates).length * 150; // 150px é o tamanho mínimo de cada item
+    const animationDuration = totalWidth / 50; // Ajuste esse valor conforme necessário
+    document.documentElement.style.setProperty('--ticker-duration', `${animationDuration}s`);
+  }, [rates]);
+
   if (loading) return <div className={styles.loader}>Carregando...</div>;
   if (error) {
     return (
@@ -105,7 +109,7 @@ const App = () => {
 
   return (
     <div className={styles.tickerContainerWrapper}>
-      <div className={styles.tickerContainer}>
+      <div className={styles.tickerContainer} style={{ animationDuration: 'var(--ticker-duration)' }}>
         {Object.entries(rates).map(([currency, rate]) => (
           <div key={currency} className={styles.cambioItem}>
             <p>
