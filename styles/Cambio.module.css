@@ -14,7 +14,7 @@
 /* Barra de rolagem abaixo do título */
 .tickerContainerWrapper {
   width: 100vw; /* Garantir que ocupe toda a largura da tela */
-  background-color: #000; /* Fundo preto */
+  background-color: #fff; /* Fundo preto */
   padding: 0px 0; /* Espaço acima e abaixo dos itens */
   margin-top: 0px; /* Espaçamento entre o título e a barra */
   display: flex; /* Exibe os itens na horizontal */
@@ -34,7 +34,7 @@
 .cambioItem {
   margin: 0 20px; /* Aumentado o espaçamento entre os itens (de 20px para 40px) */
   padding: 10px 20px; /* Aumentado o espaçamento interno (de 5px para 10px e 10px para 20px) */
-  color: #fff; /* Texto branco */
+  color: #007bff; /* Texto branco */
   font-weight: bold; /* Texto em negrito */
   font-style: italic;
   font-size: 1.5em; /* Tamanho da fonte */
