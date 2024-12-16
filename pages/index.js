@@ -23,6 +23,7 @@ export default function Home({ articles, error }) {
           <Weather />
           <br/>
           <Ibovespa />
+          <br/>
           <Cambio />
           <br/>
           <Futebol />

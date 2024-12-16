@@ -7,14 +7,13 @@
   color: #007bff; /* Cor azul para o texto */
   background-color: #fff; /* Fundo branco */
   padding: 10px; /* Adicionando espaçamento interno para o título */
-  border-radius: 5px; /* Bordas arredondadas para a caixa */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombras suaves para destacar a caixa */
+
 }
 
 /* Barra de rolagem abaixo do título */
 .tickerContainerWrapper {
-  width: 20vw; /* Reduzindo a largura para 80% da largura da tela */
-  background-color: #fff; /* Fundo branco */
+  width: 18.5vw; /* Reduzindo a largura para 80% da largura da tela */
+  background-color: #f9f9f9; /* Fundo branco */
   padding: 0px 0; /* Espaço acima e abaixo dos itens */
   margin-top: 0px; /* Espaçamento entre o título e a barra */
   display: flex; /* Exibe os itens na horizontal */
@@ -22,6 +21,8 @@
   position: relative; /* Necessário para animações */
   margin-left: auto; /* Centraliza a barra na tela */
   margin-right: auto; /* Centraliza a barra na tela */
+  border-radius: 8px; /* Bordas arredondadas para a caixa */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombras suaves para destacar a caixa */
 }
 
 /* Container que vai mostrar as cotações */
