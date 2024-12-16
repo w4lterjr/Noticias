@@ -7,16 +7,21 @@ const App = () => {
     USD: null,
     EUR: null,
     BTC: null,
-    IBOVESPA: null, // Adicionando o Ibovespa
+    IBOVESPA: null,
     SP500: null,
-    Ouro: null, // Adicionando o ouro (XAU/USD)
+    Ouro: null,
   });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const API_KEY = process.env.NEXT_PUBLIC_ALPHA_VANTAGE_API_KEY; // Substitua pela sua chave de API
+  const API_KEY = process.env.NEXT_PUBLIC_ALPHA_VANTAGE_API_KEY;
 
-  // Função para buscar cotações
+  // Função para formatar valores monetários
+  const formatCurrency = (value) => {
+    if (value === null || value === undefined) return "N/A";
+    return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(value);
+  };
+
   const fetchCotacoes = async () => {
     setLoading(true);
     setError(null);
@@ -36,45 +41,43 @@ const App = () => {
         axios.get("https://www.alphavantage.co/query", {
           params: {
             function: "TIME_SERIES_DAILY",
-            symbol: "XAUUSD", // Ouro em relação ao dólar
+            symbol: "XAUUSD",
             interval: "1day",
             apikey: API_KEY,
           },
         }),
-        axios.get("https://www.alphavantage.co/query", {  // Adicionando a consulta do Ibovespa
+        axios.get("https://www.alphavantage.co/query", {
           params: {
             function: "TIME_SERIES_DAILY",
-            symbol: "IBOV.SA", // Cotação do Ibovespa
+            symbol: "IBOV.SA",
             interval: "1day",
             apikey: API_KEY,
           },
         }),
       ]);
 
-      const timeSeries = sp500Response.data["Time Series (5min)"];
-      const lastSP500Close = timeSeries
-        ? parseFloat(timeSeries[Object.keys(timeSeries)[0]]["4. close"])
-        : null;
+      // Process SP500
+      const sp500Data = sp500Response.data["Time Series (5min)"];
+      const lastSP500Close = sp500Data ? parseFloat(sp500Data[Object.keys(sp500Data)[0]]["4. close"]) : null;
 
-      const latestGoldData = goldResponse.data["Time Series (Daily)"];
-      const latestGoldDate = latestGoldData ? Object.keys(latestGoldData)[0] : null;
-      const goldPrice = latestGoldData
-        ? latestGoldData[latestGoldDate]["4. close"]
-        : null;
+      // Process Gold
+      const goldData = goldResponse.data["Time Series (Daily)"];
+      const lastGoldDate = goldData ? Object.keys(goldData)[0] : null;
+      const goldPrice = goldData ? parseFloat(goldData[lastGoldDate]["4. close"]) : null;
 
-      const latestIbovespaData = ibovespaResponse.data['Time Series (Daily)'];
-      const latestIbovespaDate = latestIbovespaData ? Object.keys(latestIbovespaData)[0] : null;
-      const ibovespaPrice = latestIbovespaData
-        ? latestIbovespaData[latestIbovespaDate]["4. close"]
+      // Process Ibovespa
+      const ibovespaData = ibovespaResponse.data['Time Series (Daily)'];
+      const ibovespaPrice = ibovespaData
+        ? parseFloat(ibovespaData[Object.keys(ibovespaData)[0]]["4. close"])
         : null;
 
       setRates({
-        USD: parseFloat(usdResponse.data.rates.BRL) || 0,
-        EUR: parseFloat(eurResponse.data.rates.BRL) || 0,
+        USD: usdResponse.data.rates.BRL || 0,
+        EUR: eurResponse.data.rates.BRL || 0,
         BTC: parseFloat(btcResponse.data.last_trade_price) || 0,
-        IBOVESPA: parseFloat(ibovespaPrice) || 0, // Armazenando o preço do Ibovespa
-        SP500: lastSP500Close !== null ? lastSP500Close : 0,
-        Ouro: parseFloat(goldPrice) || 0, // Armazenando o preço do ouro
+        IBOVESPA: ibovespaPrice || 0,
+        SP500: lastSP500Close || 0,
+        Ouro: goldPrice || 0,
       });
     } catch (err) {
       setError("Erro ao buscar as cotações. Tente novamente mais tarde.");
@@ -106,7 +109,7 @@ const App = () => {
         {Object.entries(rates).map(([currency, rate]) => (
           <div key={currency} className={styles.cambioItem}>
             <p>
-              {currency} : {typeof rate === 'number' && !isNaN(rate) ? rate.toFixed(2) : "N/A"}
+              {currency} : {formatCurrency(rate)}
             </p>
           </div>
         ))}
