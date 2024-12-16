@@ -13,13 +13,15 @@
 
 /* Barra de rolagem abaixo do título */
 .tickerContainerWrapper {
-  width: 100vw; /* Garantir que ocupe toda a largura da tela */
-  background-color: #fff; /* Fundo preto */
+  width: 20vw; /* Reduzindo a largura para 80% da largura da tela */
+  background-color: #fff; /* Fundo branco */
   padding: 0px 0; /* Espaço acima e abaixo dos itens */
   margin-top: 0px; /* Espaçamento entre o título e a barra */
   display: flex; /* Exibe os itens na horizontal */
   overflow: hidden; /* Impede a barra de rolagem visível */
   position: relative; /* Necessário para animações */
+  margin-left: auto; /* Centraliza a barra na tela */
+  margin-right: auto; /* Centraliza a barra na tela */
 }
 
 /* Container que vai mostrar as cotações */
