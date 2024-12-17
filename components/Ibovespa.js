@@ -11,7 +11,7 @@ const IBOVESPAChart = () => {
   const [chartData, setChartData] = useState({ labels: [], datasets: [] });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const apiKey = process.env.NEXT_PUBLIC_ALPHA_VANTAGE_API_KEY;
+  const apiKey = process.env.NEXT_PUBLIC_ALPHA_VANTAGE_API_KEY_2;
   const symbol = 'IBOV.SA';
 
   useEffect(() => {
